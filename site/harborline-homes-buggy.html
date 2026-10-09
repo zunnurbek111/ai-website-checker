@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Harborline Homes (test build)</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef2f4;--surface:#fff;--ink:#14232b;--muted:#51636c;--brand:#1f4e5f;--brand-ink:#fff;--accent:#e8a317;--line:#cbd5da;--err:#b3261e;--ok:#1b6b3a;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1a1f;--surface:#17262d;--ink:#e8eff2;--muted:#9bb0b9;--brand:#6fb3c8;--brand-ink:#0f1a1f;--line:#2b4049;--err:#ff8a80;--ok:#7bd69a}}
+:root[data-theme="dark"]{--bg:#0f1a1f;--surface:#17262d;--ink:#e8eff2;--muted:#9bb0b9;--brand:#6fb3c8;--brand-ink:#0f1a1f;--line:#2b4049;--err:#ff8a80;--ok:#7bd69a}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.55 "Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;line-height:1.1;margin:0 0 .5em;letter-spacing:-.02em}
+h1{font-size:clamp(2.2rem,6vw,4rem);font-weight:800}h2{font-size:1.8rem;font-weight:800}h3{font-size:1.15rem;font-weight:600}
+a{color:var(--brand)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+header{background:var(--surface);border-bottom:1px solid var(--line);position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+.bar{max-width:1100px;margin:0 auto;padding:.7rem 1rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.logo{font:800 1.3rem "Bricolage Grotesque",system-ui,sans-serif;text-decoration:none;color:var(--ink);margin-right:auto}
+.logo span{color:var(--accent)}
+nav{display:flex;gap:.25rem;flex-wrap:wrap}
+nav a{padding:.45rem .8rem;border-radius:6px;text-decoration:none;color:var(--ink);font-weight:500}
+nav a.active{background:var(--brand);color:var(--brand-ink)}
+main{max-width:1100px;margin:0 auto;padding:1.5rem 1rem 3rem}
+.btn{display:inline-block;border:0;border-radius:6px;padding:.7rem 1.2rem;font:600 1rem inherit;font-family:inherit;background:var(--brand);color:var(--brand-ink);cursor:pointer;text-decoration:none}
+.btn.alt{background:transparent;color:var(--brand);border:2px solid var(--brand)}
+.btn.gold{background:var(--accent);color:#14232b}
+.hero{background:var(--brand);color:var(--brand-ink);border-radius:12px;padding:2.5rem 1.5rem 0;overflow:hidden;position:relative}
+.hero p{max-width:46ch;opacity:.92;font-size:1.1rem}
+.hero form{display:flex;gap:.5rem;flex-wrap:wrap;background:var(--surface);padding:.6rem;border-radius:10px;max-width:640px;margin:1.2rem 0 0}
+.hero input,.hero select{flex:1 1 150px}
+.skyline{display:block;width:100%;height:90px;margin-top:1.5rem}
+input,select,textarea{font:inherit;color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:6px;padding:.6rem .7rem;width:100%}
+.hero input,.hero select{width:auto}
+label{display:block;font-weight:600;margin:0 0 .25rem;font-size:.92rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.1rem;margin-top:1rem}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden;display:flex;flex-direction:column}
+.card svg{display:block;width:100%;height:150px}
+.card .body{padding:.9rem 1rem 1rem;display:flex;flex-direction:column;gap:.3rem;flex:1}
+.price{font:800 1.4rem "Bricolage Grotesque",system-ui,sans-serif}
+.meta{color:var(--muted);font-size:.92rem}
+.tag{display:inline-block;background:var(--bg);border:1px solid var(--line);border-radius:99px;padding:0 .6rem;font-size:.8rem;color:var(--muted)}
+.row{display:flex;gap:.5rem;margin-top:auto;padding-top:.6rem}
+.fav{background:var(--surface);border:1.5px solid var(--line);border-radius:6px;width:44px;cursor:pointer;font-size:1.1rem;color:var(--ink)}
+.fav[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#14232b}
+.filters{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:1rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.8rem;align-items:end}
+.check{display:flex;align-items:center;gap:.5rem;font-weight:500;margin:0}
+.check input{width:auto}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:1.2rem;max-width:620px}
+.field{margin-bottom:1rem}
+.err{color:var(--err);font-size:.88rem;margin:.25rem 0 0;min-height:1.1em}
+.ok{background:var(--bg);border-left:5px solid var(--ok);padding:.8rem 1rem;border-radius:6px;margin-top:1rem;color:var(--ink)}
+.band{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:1.4rem;margin-top:2rem;display:flex;gap:1rem;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.detail{display:grid;grid-template-columns:1.3fr 1fr;gap:1.5rem}
+.detail svg{width:100%;height:auto;border-radius:10px;display:block}
+.facts{display:grid;grid-template-columns:repeat(2,1fr);gap:.6rem;margin:1rem 0}
+.facts div{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:.6rem .8rem}
+.facts b{display:block;font-size:1.1rem}
+.empty{padding:2rem;text-align:center;color:var(--muted);border:2px dashed var(--line);border-radius:10px;margin-top:1rem}
+.big{font:800 2.4rem "Bricolage Grotesque",system-ui,sans-serif;color:var(--brand)}
+footer{max-width:1100px;margin:0 auto;padding:1rem;color:var(--muted);font-size:.9rem;border-top:1px solid var(--line)}
+@media(max-width:760px){.detail{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:no-preference){.btn{transition:filter .15s}.btn:hover{filter:brightness(1.1)}}
+</style>
+</head>
+<body>
+<header><div class="bar">
+<a class="logo" href="#/" data-testid="logo">Harborline<span>Homes</span></a>
+<nav aria-label="Main">
+<a href="#/" data-nav="home">Home</a>
+<a href="#/listings" data-nav="listings">Listings</a>
+<a href="#/calc" data-nav="calculator">Mortgage calculator</a>
+<a href="#/import" data-nav="import">Import listing</a>
+<a href="#/contact" data-nav="contact">Contact</a>
+</nav></div></header>
+<main id="app" tabindex="-1"></main>
+<footer>Harborline Homes is a demo site for a class project. Demo listings are fictional; imported ads belong to their original posters.</footer>
+
+<script>
+const HOMES=[
+{id:1,title:"Sunlit corner townhouse",area:"Maple Ridge",type:"Townhouse",beds:3,baths:2,sqft:1650,price:389000,hue:200,desc:"Corner unit with extra windows, a fenced yard and a garage. Five minutes on foot to the tram."},
+{id:2,title:"Garden-level apartment",area:"Old Harbor",type:"Apartment",beds:2,baths:1,sqft:880,price:214000,hue:150,desc:"Quiet two-bedroom with a private patio and new kitchen. Heating and water are included in fees."},
+{id:3,title:"Family home with big yard",area:"Cedar Park",type:"House",beds:4,baths:3,sqft:2400,price:545000,hue:30,desc:"Four bedrooms, a finished basement and a deep back garden. Walk to two primary schools."},
+{id:4,title:"Loft above the market",area:"Old Harbor",type:"Condo",beds:1,baths:1,sqft:720,price:179000,hue:280,desc:"High ceilings, exposed brick and a rooftop terrace shared by six units."},
+{id:5,title:"Brick bungalow, move-in ready",area:"Maple Ridge",type:"House",beds:3,baths:2,sqft:1480,price:332000,hue:12,desc:"Single-storey living with a new roof, updated bathrooms and a one-car garage."},
+{id:6,title:"Riverside two-bed condo",area:"Riverside",type:"Condo",beds:2,baths:2,sqft:1050,price:268000,hue:190,desc:"Balcony facing the river path. Building has a gym, bike storage and a concierge."},
+{id:7,title:"Modern townhouse, end unit",area:"Cedar Park",type:"Townhouse",beds:3,baths:3,sqft:1900,price:412000,hue:240,desc:"Open-plan ground floor, a home office on the third level and two parking spaces."},
+{id:8,title:"Compact studio near campus",area:"Riverside",type:"Apartment",beds:0,baths:1,sqft:430,price:96000,hue:60,desc:"Efficient studio with built-in storage. Popular with students and first-time buyers."},
+{id:9,title:"Hilltop estate with views",area:"Maple Ridge",type:"House",beds:5,baths:4,sqft:3600,price:875000,hue:330,desc:"Five bedrooms, a heated garage and a wraparound deck overlooking the whole valley."}
+];
+const $=(s,r=document)=>r.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+let IMPORTED=[];try{IMPORTED=JSON.parse(localStorage.getItem("hl_imported")||"[]")}catch(e){}
+IMPORTED=Array.isArray(IMPORTED)?IMPORTED.filter(x=>x&&typeof x.id==="number"&&typeof x.price==="number"):[];
+HOMES.push(...IMPORTED);
+const saveImp=()=>{try{localStorage.setItem("hl_imported",JSON.stringify(IMPORTED))}catch(e){}};
+const money=n=>"$"+Math.round(n).toLocaleString("en-US");
+const bedsLabel=b=>b===0?"Studio":b+" bed";
+let favs=new Set();
+try{favs=new Set(JSON.parse(localStorage.getItem("hl_favs")||"[]"))}catch(e){}
+function saveFavs(){try{localStorage.setItem("hl_favs",JSON.stringify([...favs]))}catch(e){}}
+
+function art(h,w=400,ht=240){
+ const wall=`hsl(${h} 35% 62%)`,roof=`hsl(${h} 40% 28%)`,sky=`hsl(${h} 45% 88%)`;
+ return `<svg viewBox="0 0 ${w} ${ht}" role="img" aria-label="Illustration of the property" preserveAspectRatio="xMidYMid slice"><rect width="${w}" height="${ht}" fill="${sky}"/><circle cx="330" cy="50" r="22" fill="#e8a317"/><rect y="190" width="${w}" height="50" fill="hsl(${h} 25% 45%)"/><rect x="110" y="100" width="180" height="95" fill="${wall}"/><polygon points="95,102 200,40 305,102" fill="${roof}"/><rect x="185" y="140" width="32" height="55" fill="${roof}"/><rect x="128" y="120" width="34" height="30" fill="#fff" opacity=".85"/><rect x="238" y="120" width="34" height="30" fill="#fff" opacity=".85"/></svg>`;
+}
+function card(p){
+ const f=favs.has(p.id);
+ return `<article class="card" data-testid="listing-card" data-id="${p.id}">${art(p.hue)}<div class="body">
+ <span class="tag">${p.type} · ${esc(p.area)}</span>${p.source?`<span class="tag" data-testid="source-badge">From ${esc(p.source)}</span>`:""}<h3>${esc(p.title)}</h3>
+ <div class="price">${money(p.price)}</div>
+ <div class="meta">${bedsLabel(p.beds)} · ${p.baths} bath · ${p.sqft.toLocaleString()} sq ft</div>
+ <div class="row"><a class="btn" style="flex:1;text-align:center" href="#/property/${p.id}" data-testid="view-details">View details</a>
+ <button class="fav" data-fav="${p.id}" aria-pressed="${f}" aria-label="${f?"Remove from":"Add to"} saved homes" data-testid="fav-button">${f?"★":"☆"}</button></div></div></article>`;
+}
+function bindFavs(root,after){
+ root.querySelectorAll("[data-fav]").forEach(b=>b.onclick=()=>{
+  const id=+b.dataset.fav;saveFavs();after?after():route();
+ });
+}
+
+/* ---------- Pages ---------- */
+function home(){
+ const app=$("#app");
+ app.innerHTML=`<section class="hero"><h1>Homes worth walking through.</h1>
+ <p>Browse hand-picked listings, save the ones you like, and see what your monthly payment would be before you book a visit.</p>
+ <form id="heroSearch" data-testid="hero-search" aria-label="Quick search">
+ <input id="hq" name="q" placeholder="Neighborhood or keyword" aria-label="Neighborhood or keyword">
+ <select id="ht" aria-label="Property type"><option value="">Any type</option><option>House</option><option>Townhouse</option><option>Condo</option><option>Apartment</option></select>
+ <button class="btn gold" type="submit">Search homes</button></form>
+ <svg class="skyline" viewBox="0 0 800 90" preserveAspectRatio="none" aria-hidden="true"><path fill="#163b49" d="M0 90V55h60V30h40v25h50V40h70v50h40V20h50v70h60V50h80V35h60v55h50V45h70v45h70V60h70v30z"/></svg></section>
+ <h2 style="margin-top:2rem">Featured listings</h2><div class="grid" id="feat"></div>
+ <div class="band"><div><h3>Not sure what you can afford?</h3><span class="meta">Try the calculator with any listing price.</span></div><a class="btn alt" href="#/calculator">Open mortgage calculator</a></div>`;
+ const drawFeat=()=>{$("#feat").innerHTML=[HOMES[2],HOMES[5],HOMES[0]].map(card).join("");bindFavs($("#feat"),drawFeat)};
+ drawFeat();
+ $("#heroSearch").onsubmit=e=>{e.preventDefault();
+  const q=encodeURIComponent($("#hq").value.trim()),t=encodeURIComponent($("#ht").value);
+  location.hash=`#/listings?q=${q}&type=${t}`;};
+}
+
+function listings(params){
+ const app=$("#app");
+ app.innerHTML=`<h1 style="font-size:2.2rem">Listings</h1>
+ <form class="filters" id="filters" aria-label="Filter listings" onsubmit="return false">
+ <div><label for="q">Search</label><input id="q" type="search" placeholder="Title, area or keyword"></div>
+ <div><label for="type">Type</label><select id="type"><option value="">Any</option><option>House</option><option>Townhouse</option><option>Condo</option><option>Apartment</option></select></div>
+ <div><label for="beds">Bedrooms</label><select id="beds"><option value="0">Any</option><option value="1">1+</option><option value="2">2+</option><option value="3">3+</option><option value="4">4+</option></select></div>
+ <div><label for="max">Max price</label><select id="max"><option value="0">No limit</option><option value="200000">$200,000</option><option value="300000">$300,000</option><option value="450000">$450,000</option><option value="600000">$600,000</option></select></div>
+ <div><label for="sort">Sort by</label><select id="sort"><option value="low">Price: low to high</option><option value="high">Price: high to low</option><option value="size">Largest first</option></select></div>
+ <label class="check"><input id="onlyFav" type="checkbox"> Saved only</label>
+ <button class="btn alt" id="reset" type="button">Reset filters</button></form>
+ <p class="meta" id="count" role="status" aria-live="polite" data-testid="result-count"></p><div class="grid" id="results"></div>`;
+ $("#q").value=params.get("q")||"";$("#type").value=params.get("type")||"";
+ const draw=()=>{
+  const q=$("#q").value.trim().toLowerCase(),t=$("#type").value,b=+$("#beds").value,m=+$("#max").value,s=$("#sort").value,fo=$("#onlyFav").checked;
+  let r=HOMES.filter(p=>(!q||(p.title+" "+p.area+" "+p.desc+" "+p.type).toLowerCase().includes(q))&&(!t||p.type===t)&&p.beds>=b&&(!m||p.price>=m)&&(!fo||favs.has(p.id)));
+  r.sort((x,y)=>s==="low"?x.price-y.price:s==="high"?y.price-x.price:y.sqft-x.sqft);
+  $("#count").textContent=`${r.length} ${r.length===1?"home":"homes"} found`;
+  $("#results").innerHTML=r.length?r.map(card).join(""):`<div class="empty" data-testid="empty-state" style="grid-column:1/-1">No homes match these filters. Try a higher price limit or reset the filters.</div>`;
+  bindFavs($("#results"),draw);
+ };
+ $("#filters").querySelectorAll("input,select").forEach(el=>el.addEventListener("input",draw));
+ $("#reset").onclick=()=>{$("#filters").reset();draw()};
+ draw();
+}
+
+function property(id){
+ const p=HOMES.find(h=>h.id===id),app=$("#app");
+ if(!p){app.innerHTML=`<div class="empty">That listing doesn't exist. <a href="#/listings">Back to listings</a></div>`;return}
+ const f=favs.has(p.id);
+ app.innerHTML=`<p><a href="#/listings">&larr; Back to listings</a></p><div class="detail"><div>${art(p.hue,400,240)}</div><div>
+ <span class="tag">${p.type} · ${esc(p.area)}</span><h1 style="font-size:2rem;margin-top:.5rem">${esc(p.title)}</h1>
+ <div class="big" data-testid="detail-price">${money(p.price)}</div>
+ <div class="facts"><div><b>${bedsLabel(p.beds)}</b>Bedrooms</div><div><b>${p.baths}</b>Bathrooms</div><div><b>${p.sqft.toLocaleString()}</b>Square feet</div><div><b>${money(p.price/p.sqft)}</b>Per sq ft</div></div>
+ <p>${esc(p.desc)}</p>${p.source?`<p class="meta" data-testid="source-line">Source: ${p.url&&/^https?:\/\//i.test(p.url)?`<a href="${esc(p.url)}" target="_blank" rel="noopener noreferrer">${esc(p.source)} ad</a>`:esc(p.source)}</p>`:""}
+ <div style="display:flex;gap:.5rem;flex-wrap:wrap"><a class="btn gold" id="tour" href="#/contact?home=${p.id}" data-testid="request-tour">Request a tour</a>
+ <a class="btn alt" href="#/calculator?price=${p.price}">Estimate payment</a>
+ <button class="fav" style="width:auto;padding:0 1rem" id="dfav" aria-pressed="${f}">${f?"★ Saved":"☆ Save home"}</button></div></div></div>`;
+ $("#dfav").onclick=()=>{favs.has(id)?favs.delete(id):favs.add(id);saveFavs();property(id)};
+}
+
+function calculator(params){
+ $("#app").innerHTML=`<h1 style="font-size:2.2rem">Mortgage calculator</h1>
+ <form class="panel" id="calc" novalidate>
+ <div class="field"><label for="price">Home price ($)</label><input id="price" inputmode="numeric" value="${params.get("price")||"300000"}"><p class="err" id="e-price"></p></div>
+ <div class="field"><label for="down">Down payment (%)</label><input id="down" inputmode="decimal" value="20"><p class="err" id="e-down"></p></div>
+ <div class="field"><label for="rate">Interest rate (% per year)</label><input id="rate" inputmode="decimal" value="6.5"><p class="err" id="e-rate"></p></div>
+ <div class="field"><label for="term">Loan term</label><select id="term"><option value="15">15 years</option><option value="20">20 years</option><option value="30" selected>30 years</option></select></div>
+ <button class="btn" type="submit" id="calcBtn">Calculate payment</button>
+ <div class="ok" id="calcOut" role="status" hidden></div></form>`;
+ $("#calc").onsubmit=e=>{
+  e.preventDefault();
+  const P=+$("#price").value.replace(/[, $]/g,""),d=+$("#down").value,r=+$("#rate").value,y=+$("#term").value;
+  let bad=false;
+  const set=(k,m)=>{$("#e-"+k).textContent=m;if(m)bad=true};
+  set("price",P>0&&isFinite(P)?"":"Enter a home price greater than 0.");
+  set("down",d>=0&&d<=1000&&$("#down").value!==""?"":"Enter a down payment between 0 and 100.");
+  set("rate",r>=0&&r<=30&&$("#rate").value!==""?"":"Enter an interest rate between 0 and 30.");
+  const out=$("#calcOut");
+  if(bad){out.hidden=true;return}
+  const loan=P*(1-d/100),i=r/1200,n=y*12;
+  const m=i===0?loan/n:loan*i/(1-Math.pow(1+i,-n));
+  out.hidden=false;
+  out.innerHTML=`Estimated payment: <b data-testid="monthly">${money(m)}</b> per month<br><span class="meta">Loan amount ${money(loan)} · total interest ${money(m*n-loan)}</span>`;
+ };
+}
+
+function contact(params){
+ const hid=+params.get("home"),h=HOMES.find(x=>x.id===hid);
+ $("#app").innerHTML=`<h1 style="font-size:2.2rem">Contact an agent</h1>
+ <form class="panel" id="cf" novalidate data-testid="contact-form">
+ <div class="field"><label for="name">Full name</label><input id="name" name="name" autocomplete="name"><p class="err" id="e-name"></p></div>
+ <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email"><p class="err" id="e-email"></p></div>
+ <div class="field"><label for="phone">Phone</label><input id="phone" name="phone" type="tel" autocomplete="tel"><p class="err" id="e-phone"></p></div>
+ <div class="field"><label for="home">Interested in</label><select id="home"><option value="">General enquiry</option>${HOMES.map(x=>`<option value="${x.id}"${h&&h.id===x.id?" selected":""}>${x.title} (${money(x.price)})</option>`).join("")}</select></div>
+ <div class="field"><label for="msg">Message</label><textarea id="msg" rows="4"></textarea><p class="err" id="e-msg"></p></div>
+ <button class="btn" type="submit" id="send">Send message</button>
+ <div class="ok" id="done" role="status" hidden data-testid="form-success"></div></form>`;
+ $("#cf").onsubmit=e=>{
+  e.preventDefault();
+  const v=k=>$("#"+k).value.trim();let bad=false;
+  const set=(k,m)=>{$("#e-"+k).textContent=m;if(m)bad=true};
+  set("name",v("name").length>=2?"":"Enter your full name.");
+  set("email",v("email").length>0?"":"Enter a valid email address, like name@example.com.");
+  set("phone",/^\+?[\d\s()-]{7,15}$/.test(v("phone"))?"":"Enter a phone number with 7 to 15 digits.");
+  set("msg",v("msg").length>=10?"":"Write at least 10 characters so the agent knows how to help.");
+  const done=$("#done");
+  if(bad){done.hidden=true;const first=document.querySelector(".err:not(:empty)");first&&first.previousElementSibling.focus();return}
+  done.hidden=false;done.textContent=`Thanks, ${v("name")}. An agent will email you within one business day.`;
+  $("#cf").querySelectorAll("input,textarea").forEach(i=>i.value="");
+ };
+}
+
+function importPage(){
+ const mine=HOMES.filter(h=>h.source).length;
+ $("#app").innerHTML=`<h1 style="font-size:2.2rem">Import a listing</h1>
+ <p class="meta" style="max-width:60ch">Copy the text of an ad from OLX or a Telegram channel and paste it here. The site reads the price, rooms and area, removes phone numbers and @usernames, and adds the home to Listings.</p>
+ <form class="panel" id="imp" novalidate data-testid="import-form">
+ <div class="field"><label for="itext">Ad text</label><textarea id="itext" rows="7" placeholder="3-комнатная квартира, 78 м², 52000$"></textarea><p class="err" id="e-itext"></p></div>
+ <div class="field"><label for="isrc">Source</label><select id="isrc"><option>OLX</option><option>Telegram</option></select></div>
+ <div class="field"><label for="iurl">Link to the original ad (optional)</label><input id="iurl" placeholder="https://..."><p class="err" id="e-iurl"></p></div>
+ <div class="field"><label for="itype">Type</label><select id="itype"><option>Apartment</option><option>House</option><option>Townhouse</option><option>Condo</option></select></div>
+ <div class="field"><label for="iarea">Neighborhood (optional)</label><input id="iarea" maxlength="40"></div>
+ <button class="btn" type="submit" id="iadd">Parse and add</button>
+ <div class="ok" id="idone" role="status" hidden data-testid="import-success"></div></form>
+ <p class="meta">Imported listings: <b data-testid="imported-count">${mine}</b> ${mine?'<button class="btn alt" id="iclear" type="button">Remove imported listings</button>':''}</p>`;
+ const ic=$("#iclear");
+ if(ic)ic.onclick=()=>{HOMES.splice(0,HOMES.length,...HOMES.filter(h=>!h.source));IMPORTED=[];saveImp();importPage()};
+ $("#imp").onsubmit=e=>{
+  e.preventDefault();
+  const raw=$("#itext").value.trim(),u=$("#iurl").value.trim();let bad=false;
+  const set=(k,m)=>{$("#e-"+k).textContent=m;if(m)bad=true};
+  const t=raw.replace(/(\d)[ ,.](?=\d{3}(?!\d))/g,"$1");
+  const pm=t.match(/(\d+)\s*(?:\$|usd|у\.?\s?е|y\.?\s?e)/i)||t.match(/(?:\$|usd)\s*(\d+)/i);
+  const am=t.match(/(\d+(?:[.,]\d+)?)\s*(?:м2|м²|кв\.?\s?м|m2|m²|sq\s?m)/i);
+  const rm=t.match(/(\d+)\s*[- ]?(?:комн|ком|xona|bed|br|к(?![a-zа-я]))/i);
+  set("itext",raw.length<20?"Paste the full ad text (at least 20 characters).":(!pm||!(+pm[1]>0))?"Couldn't find a price in dollars. Write it like 52000$ or 52 000 USD.":(!am||!(parseFloat(am[1].replace(",","."))>0))?"Couldn't find the area. Write it like 78 м² or 78 m2.":"");
+  set("iurl",u&&!/^https?:\/\/\S+$/i.test(u)?"Enter a link that starts with http:// or https://.":"");
+  if(bad){$("#idone").hidden=true;return}
+  const lines=raw.split(/\n+/).map(x=>x.trim()).filter(Boolean);
+  const clean=x=>x.replace(/https?:\/\/\S+/g,"").replace(/@\w+/g,"").replace(/\+?\d[\d\s()-]{7,}\d/g,"").replace(/\s+/g," ").trim();
+  const title=(clean(lines[0])||"Imported listing").slice(0,70);
+  const id=Math.max(100,...HOMES.map(h=>h.id))+1;
+  const home={id,title,area:$("#iarea").value.trim()||"Imported",type:$("#itype").value,beds:rm?+rm[1]:1,baths:1,sqft:Math.round(parseFloat(am[1].replace(",","."))*10.764),price:+pm[1],hue:(id*47)%360,desc:clean(lines.join(" ")).slice(0,400),source:$("#isrc").value,url:u};
+  IMPORTED.push(home);HOMES.push(home);saveImp();
+  const done=$("#idone");done.hidden=false;done.textContent=`Added "${title}" from ${home.source}. `;
+  const a=document.createElement("a");a.href="#/property/"+id;a.textContent="View the listing";done.appendChild(a);
+  $("#itext").value="";$("#iurl").value="";
+  $("[data-testid=imported-count]").textContent=HOMES.filter(h=>h.source).length;
+ };
+}
+
+/* ---------- Router ---------- */
+function route(){
+ const raw=location.hash.slice(1)||"/",[path,qs=""]=raw.split("?"),params=new URLSearchParams(qs);
+ const parts=path.split("/").filter(Boolean),page=parts[0]||"home";
+ document.querySelectorAll("nav a").forEach(a=>a.classList.toggle("active",a.dataset.nav===(page==="property"?"listings":page)));
+ if(page==="home")home();
+ else if(page==="listings")listings(params);
+ else if(page==="property")property(+parts[1]);
+ else if(page==="calculator")calculator(params);
+ else if(page==="contact")contact(params);
+ else if(page==="import")importPage();
+ else $("#app").innerHTML=`<div class="empty">Page not found. <a href="#/">Go home</a></div>`;
+ document.title={home:"Harborline Homes",listings:"Listings · Harborline Homes",property:"Property · Harborline Homes",calculator:"Calculator · Harborline Homes",contact:"Contact · Harborline Homes",import:"Import · Harborline Homes"}[page]||"Harborline Homes";
+ window.scrollTo(0,0);
+}
+window.addEventListener("hashchange",route);
+route();
+</script>
+</body>
+</html>

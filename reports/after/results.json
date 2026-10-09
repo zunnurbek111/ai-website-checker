@@ -1,0 +1,16 @@
+{
+ "url": "file:///C:/Users/zunbu/Desktop/ai-website-tester/site/harborline-homes-fixed.html",
+ "stats": {
+  "pages": 8,
+  "forms": 5,
+  "form_cases": 18,
+  "buttons": 5,
+  "filter_cases": 15
+ },
+ "notes": [
+  "Form \"heroSearch\" on /listings: the generic valid test data did not produce a success message, so field-level tests were skipped (the tester cannot guess site-specific data).",
+  "Form \"heroSearch\" on /listings: the generic valid test data did not produce a success message, so field-level tests were skipped (the tester cannot guess site-specific data).",
+  "Form \"imp\" on /import: the generic valid test data did not produce a success message, so field-level tests were skipped (the tester cannot guess site-specific data)."
+ ],
+ "findings": []
+}

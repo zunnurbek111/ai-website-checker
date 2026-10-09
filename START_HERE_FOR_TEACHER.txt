@@ -1,0 +1,26 @@
+AI WEBSITE TESTER - how to run it (about 5 minutes the first time)
+
+What this is: a tool that opens a real estate website in a browser, clicks buttons, fills in forms and
+filters, finds problems, and writes a report with screenshots. The site comes in two versions:
+  - site\harborline-homes-buggy.html  : 5 bugs planted on purpose (the tester is not told where they are)
+  - site\harborline-homes-fixed.html  : the same site after the bugs were fixed
+
+HOW TO RUN
+  Windows:    double-click  RUN_ME_WINDOWS.bat
+  Mac/Linux:  open a terminal in this folder and run  bash run_me_mac_linux.sh
+
+What you need: Python 3.10 or newer (https://www.python.org/downloads/ - on Windows tick "Add Python to PATH")
+and an internet connection for the first run (it downloads the packages and a browser).
+
+When it asks for an API key, you can just press Enter. The tester then runs without the AI step and
+shows short built-in hints. With an Anthropic API key, Claude also writes an explanation, the likely cause
+in the code, and a suggested fix for every problem. Nothing is saved or sent anywhere except to that API.
+
+EXPECTED RESULT
+  Step 1 (buggy site): 6 findings covering the 5 planted bugs (the "save" button is reported on two pages).
+  Step 2 (fixed site): 0 problems, and the comparison says "6 fixed, 0 still failing, 0 new".
+Two report.html files open in the browser (also in the reports folder).
+
+Do not want to run anything? Sample reports from the student's own run are in the "reports" folder -
+open reports\before\report.html and reports\after\report.html directly.
+More detail (what it can and cannot detect): README.md

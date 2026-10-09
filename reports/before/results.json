@@ -1,0 +1,89 @@
+{
+ "url": "file:///C:/Users/zunbu/Desktop/ai-website-tester/site/harborline-homes-buggy.html",
+ "stats": {
+  "pages": 8,
+  "forms": 5,
+  "form_cases": 18,
+  "buttons": 5,
+  "filter_cases": 15
+ },
+ "notes": [
+  "Form \"heroSearch\" on /listings: the generic valid test data did not produce a success message, so field-level tests were skipped (the tester cannot guess site-specific data).",
+  "Form \"heroSearch\" on /listings: the generic valid test data did not produce a success message, so field-level tests were skipped (the tester cannot guess site-specific data).",
+  "Form \"imp\" on /import: the generic valid test data did not produce a success message, so field-level tests were skipped (the tester cannot guess site-specific data)."
+ ],
+ "findings": [
+  {
+   "id": 1,
+   "key": "button|/|Add to saved homes",
+   "category": "button",
+   "severity": "high",
+   "page": "/",
+   "title": "Button \"Add to saved homes\" has no visible effect",
+   "evidence": "Clicked \"Add to saved homes\". The URL and the page content were identical before and after the click.",
+   "hint": "Make sure the click handler is attached, runs, and updates the state and the UI.",
+   "screenshot": "01_button.png",
+   "ai": null
+  },
+  {
+   "id": 2,
+   "key": "button|/listings|Add to saved homes",
+   "category": "button",
+   "severity": "high",
+   "page": "/listings",
+   "title": "Button \"Add to saved homes\" has no visible effect",
+   "evidence": "Clicked \"Add to saved homes\". The URL and the page content were identical before and after the click.",
+   "hint": "Make sure the click handler is attached, runs, and updates the state and the UI.",
+   "screenshot": "02_button.png",
+   "ai": null
+  },
+  {
+   "id": 3,
+   "key": "filter|/listings|Max price",
+   "category": "filter",
+   "severity": "high",
+   "page": "/listings",
+   "title": "Filter \"Max price\" returns results that do not match it",
+   "evidence": "Set \"Max price\" to \"$200,000\". Results include prices above the limit: $214,000, $268,000, $332,000, $389,000.",
+   "hint": "Check the comparison operator and the value used in the filter function.",
+   "screenshot": "03_filter.png",
+   "ai": null
+  },
+  {
+   "id": 4,
+   "key": "link|/calc|Mortgage calculator",
+   "category": "link",
+   "severity": "high",
+   "page": "/calc",
+   "title": "Link \"Mortgage calculator\" leads to a broken page",
+   "evidence": "Opened file:///C:/Users/zunbu/Desktop/ai-website-tester/site/harborline-homes-buggy.html#/calc. The page shows: \"Page not found. Go home\"",
+   "hint": "Check the href: it must match a route the app really handles.",
+   "screenshot": "04_link.png",
+   "ai": null
+  },
+  {
+   "id": 5,
+   "key": "form|/contact|cf:Email",
+   "category": "form",
+   "severity": "high",
+   "page": "/contact",
+   "title": "Form accepts invalid input in \"Email\"",
+   "evidence": "Typed \"abc\" in \"Email\" (all other fields valid) and submitted. The form showed \"Thanks, Test User. An agent will email you within one business day.\" and no error message.",
+   "hint": "Validate this field before showing success, and show an error message next to it.",
+   "screenshot": "05_form.png",
+   "ai": null
+  },
+  {
+   "id": 6,
+   "key": "form|/calculator|calc:Down payment (%)",
+   "category": "form",
+   "severity": "high",
+   "page": "/calculator",
+   "title": "Form accepts invalid input in \"Down payment (%)\"",
+   "evidence": "Typed \"150\" in \"Down payment (%)\" (all other fields valid) and submitted. The form showed \"Estimated payment: $-948 per month\nLoan amount $-150,000 \u00b7 total interest $-191,\" and no error message.",
+   "hint": "Validate this field before showing success, and show an error message next to it.",
+   "screenshot": "06_form.png",
+   "ai": null
+  }
+ ]
+}
