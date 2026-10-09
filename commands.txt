@@ -1,8 +1,0 @@
-
-
-python tester.py site\harborline-homes-buggy.html --out reports\before --headed
-
-start reports\before\report.html
-
-
-python tester.py site\harborline-homes-fixed.html --out reports\after --compare reports\before\results.json --headed
